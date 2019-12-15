@@ -1,0 +1,11 @@
+{
+  "name": "chap2",
+  "version": "1.0.0",
+  "description": "Code minh họa cho chap 2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "VNTALKING.COM",
+  "license": "ISC"
+}
