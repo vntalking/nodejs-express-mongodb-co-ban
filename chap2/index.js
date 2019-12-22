@@ -20,14 +20,14 @@ app.get("/", (req, res) => {
     res.send('The home page')
 })
 
-app.get('*', function (req, res) {
-    res.header(404)
-    res.send('page not found')
-});
-
 app.get('/about', (req, res) => { // called when request to /about comes in
     res.sendFile(path.resolve(__dirname, 'about.html'))
 })
 app.get('/contact', (req, res) => { //called when request to /contact comes
     res.sendFile(path.resolve(__dirname, 'contact.html'))
+})
+
+app.get('*', function (req, res) {
+    res.header(404)
+    res.send('page not found')
 })
