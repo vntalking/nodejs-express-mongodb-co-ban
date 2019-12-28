@@ -3,7 +3,7 @@
   "name": "vntalking-clean-blog",
   "version": "5.0.8",
   "scripts": {
-    "start": "gulp watch"
+    "start": "nodemon index.js"
   },
   "description": "Clean Blog is a Medium inspired blog theme for Bootstrap.",
   "keywords": [
@@ -33,8 +33,10 @@
     "bootstrap": "4.3.1",
     "express": "^4.17.1",
     "jquery": "3.4.1"
+   
   },
   "devDependencies": {
+    "nodemon": "^2.0.2",
     "browser-sync": "2.26.7",
     "del": "5.1.0",
     "gulp": "4.0.2",
