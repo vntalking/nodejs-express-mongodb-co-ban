@@ -2,6 +2,7 @@ const express = require('express')
 const app = new express()
 const path = require('path')
 
+
 //Đăng ký thư mục public.
 app.use(express.static('public'))
 
