@@ -1,9 +1,11 @@
 const express = require('express')
 const app = new express()
 const path = require('path')
-
 const ejs = require('ejs')
 app.set('view engine', 'ejs')
+
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true})
 
 //Đăng ký thư mục public.
 app.use(express.static('public'))
