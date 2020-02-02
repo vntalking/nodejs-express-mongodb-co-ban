@@ -10,6 +10,7 @@ mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true})
 //Đăng ký thư mục public.
 app.use(express.static('public'))
 
+//Tao server
 app.listen(4000, () => {
     console.log('OK. App listening on port 4000')
 })
