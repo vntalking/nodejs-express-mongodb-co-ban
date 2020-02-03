@@ -7,7 +7,7 @@ app.set('view engine', 'ejs')
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true})
 
-//Đăng ký thư mục public..
+//Đăng ký thư mục public.....
 app.use(express.static('public'))
 
 //Tao server
