@@ -4,6 +4,10 @@ const path = require('path')
 const ejs = require('ejs')
 app.set('view engine', 'ejs')
 
+const bodyParser = require('body-parser')
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:true}))
+
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true})
 
@@ -32,4 +36,9 @@ app.get('/post', (req, res) => {
 
 app.get('/posts/new', (req, res) => {
     res.render('create')
+})
+
+app.post('/posts/new', (req, res) => {
+    console.log(req.body)
+    res.redirect('/')
 })
