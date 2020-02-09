@@ -3,13 +3,14 @@ const app = new express()
 const path = require('path')
 const ejs = require('ejs')
 app.set('view engine', 'ejs')
+const BlogPost = require('./models/BlogPost.js')
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true})
+mongoose.connect('mongodb://localhost/my_database', { useNewUrlParser: true })
 
 //Đăng ký thư mục public.....
 app.use(express.static('public'))
@@ -39,6 +40,8 @@ app.get('/posts/new', (req, res) => {
 })
 
 app.post('/posts/new', (req, res) => {
-    console.log(req.body)
-    res.redirect('/')
+    // model creates a new doc with browser data
+    BlogPost.create(req.body, (error, blogpost) => {
+        res.redirect('/')
+    })
 })
