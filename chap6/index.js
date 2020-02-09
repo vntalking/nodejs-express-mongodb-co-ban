@@ -3,14 +3,17 @@ const app = new express()
 const path = require('path')
 const ejs = require('ejs')
 app.set('view engine', 'ejs')
-const BlogPost = require('./models/BlogPost.js')
+
 
 const bodyParser = require('body-parser')
-app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json({ type: 'application/json' }))
+app.use(bodyParser.raw());
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/my_database', { useNewUrlParser: true })
+
+const BlogPost = require('./models/BlogPost.js')
 
 //Đăng ký thư mục public.....
 app.use(express.static('public'))
