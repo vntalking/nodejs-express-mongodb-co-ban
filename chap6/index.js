@@ -25,7 +25,9 @@ app.listen(4000, () => {
 
 
 app.get('/', (request, response) => {
-    response.render('index')
+    BlogPost.find({}, function (error, posts) {
+        console.log(posts);
+    })
 })
 
 app.get('/about', (req, res) => {
