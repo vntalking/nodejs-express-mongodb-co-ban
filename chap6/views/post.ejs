@@ -13,8 +13,8 @@
             <h1><%= detailPost.title %></h1>
             <h2 class="subheading"><%= detailPost.body %></h2>
             <span class="meta">Posted by
-              <a href="#">Start Bootstrap</a>
-              on August 24, 2019</span>
+              <a href="#"><%= blogpost.username %></a>
+              on <%= blogpost.datePosted.toDateString() %></span>
           </div>
         </div>
       </div>
