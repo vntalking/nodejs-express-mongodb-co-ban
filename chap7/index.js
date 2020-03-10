@@ -13,6 +13,9 @@ app.use(bodyParser.raw());
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/my_database', { useNewUrlParser: true })
 
+const fileUpload = require('express-fileupload')
+app.use(fileUpload())
+
 const BlogPost = require('./models/BlogPost.js')
 
 //Đăng ký thư mục public.....
@@ -48,8 +51,12 @@ app.get('/posts/new', (req, res) => {
 })
 
 app.post('/posts/new', (req, res) => {
-    // model creates a new doc with browser data
-    BlogPost.create(req.body, (error, blogpost) => {
-        res.redirect('/')
+    let image = req.files.image;
+    image.mv(path.resolve(__dirname, 'public/img', image.name), function (err) {
+        // model creates a new doc with browser data
+        BlogPost.create(req.body, (error, blogpost) => {
+            res.redirect('/')
+        })
     })
+
 })
