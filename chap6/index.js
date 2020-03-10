@@ -39,8 +39,14 @@ app.get('/about', (req, res) => {
 app.get('/contact', (req, res) => {
     res.render('contact');
 })
-app.get('/post', (req, res) => {
-    res.render('post')
+
+app.get('/post/:id', (req, res) => {
+    BlogPost.findById(req.params.id, function(error, detailPost){
+        res.render('post', {
+            detailPost
+        })
+    })
+    
 })
 
 app.get('/posts/new', (req, res) => {
