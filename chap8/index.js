@@ -18,8 +18,23 @@ app.use(fileUpload())
 
 const BlogPost = require('./models/BlogPost.js')
 
+
 //Đăng ký thư mục public.....
 app.use(express.static('public'))
+
+const customMiddleWare = (req, res, next) => {
+    console.log('Custom middle ware called')
+    next()
+}
+app.use(customMiddleWare)
+
+const validateMiddleWare = (req, res, next) => {
+    if (req.files == null || req.body.title == null || req.body.title == null) {
+        return res.redirect('/posts/new')
+    }
+    next()
+}
+app.use('/posts/new',validateMiddleWare) 
 
 //Tao server
 app.listen(4000, () => {
@@ -52,16 +67,3 @@ app.get('/posts/new', (req, res) => {
 
 app.post('/posts/new', validateMiddleWare)
 
-const customMiddleWare = (req, res, next) => {
-    console.log('Custom middle ware called')
-    next()
-}
-app.use(customMiddleWare)
-
-const validateMiddleWare = (req, res, next) => {
-    if (req.files == null || req.body.title == null || req.body.title == null) {
-        return res.redirect('/posts/new')
-    }
-    next()
-}
-app.use('/posts/new',validateMiddleWare) 
