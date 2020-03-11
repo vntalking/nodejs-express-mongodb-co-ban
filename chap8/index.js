@@ -50,19 +50,18 @@ app.get('/posts/new', (req, res) => {
     res.render('create')
 })
 
-app.post('/posts/new', (req, res) => {
-    let image = req.files.image;
-    image.mv(path.resolve(__dirname, 'public/img', image.name), function (err) {
-        // model creates a new doc with browser data
-        BlogPost.create({ body: req.body, image: '/upload/' + image.name }, (error, blogpost) => {
-            res.redirect('/')
-        })
-    })
-
-})
+app.post('/posts/new', validateMiddleWare)
 
 const customMiddleWare = (req, res, next) => {
     console.log('Custom middle ware called')
     next()
 }
 app.use(customMiddleWare)
+
+const validateMiddleWare = (req, res, next) => {
+    if (req.files == null || req.body.title == null || req.body.title == null) {
+        return res.redirect('/posts/new')
+    }
+    next()
+}
+app.use('/posts/new',validateMiddleWare) 
