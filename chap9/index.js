@@ -1,6 +1,5 @@
 const express = require('express')
 const app = new express()
-const path = require('path')
 const ejs = require('ejs')
 app.set('view engine', 'ejs')
 
@@ -21,7 +20,6 @@ mongoose.connect('mongodb://localhost/my_database', { useNewUrlParser: true })
 const fileUpload = require('express-fileupload')
 app.use(fileUpload())
 
-const BlogPost = require('./models/BlogPost.js')
 
 
 //Đăng ký thư mục public.....
