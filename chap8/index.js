@@ -34,7 +34,7 @@ const validateMiddleWare = (req, res, next) => {
     }
     next()
 }
-app.use('/posts/new',validateMiddleWare) 
+app.use('/posts/store', validateMiddleWare)
 
 //Tao server
 app.listen(4000, () => {
@@ -66,13 +66,24 @@ app.get('/posts/new', (req, res) => {
 })
 
 app.get('/post/:id', (req, res) => {
-    BlogPost.findById(req.params.id, function(error, detailPost){
+    BlogPost.findById(req.params.id, function (error, detailPost) {
         res.render('post', {
             detailPost
         })
     })
-    
+
 })
 
-app.post('/posts/new', validateMiddleWare)
+app.post('/posts/store', function (req, res) {
+    let image = req.files.image;
+    image.mv(path.resolve(__dirname, 'public/img', image.name), function (error) {
+        BlogPost.create({
+            ...req.body,
+            image: '/upload/' + image.name
+        }, function (err) {
+            res.redirect('/')
+        })
+    })
+
+})
 
