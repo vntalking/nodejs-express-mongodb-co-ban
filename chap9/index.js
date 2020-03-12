@@ -3,6 +3,7 @@ const app = new express()
 const path = require('path')
 const ejs = require('ejs')
 app.set('view engine', 'ejs')
+const newPostController = require('./controllers/newPost')
 
 
 const bodyParser = require('body-parser')
@@ -34,7 +35,7 @@ const validateMiddleWare = (req, res, next) => {
     }
     next()
 }
-app.use('/posts/new',validateMiddleWare) 
+app.use('/posts/store',validateMiddleWare) 
 
 //Tao server
 app.listen(4000, () => {
@@ -61,9 +62,7 @@ app.get('/post', (req, res) => {
     res.render('post')
 })
 
-app.get('/posts/new', (req, res) => {
-    res.render('create')
-})
+app.get('/posts/new',newPostController)
 
-app.post('/posts/new', validateMiddleWare)
+app.post('/posts/store', validateMiddleWare)
 
