@@ -53,7 +53,7 @@ app.get('/posts/new', (req, res) => {
     res.render('create')
 })
 
-app.post('/posts/new', (req, res) => {
+app.post('/posts/store', (req, res) => {
     // model creates a new doc with browser data
     BlogPost.create(req.body, (error, blogpost) => {
         res.redirect('/')
