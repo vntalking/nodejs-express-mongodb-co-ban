@@ -3,13 +3,14 @@ const app = new express()
 const path = require('path')
 const ejs = require('ejs')
 app.set('view engine', 'ejs')
-const newPostController = require('./controllers/newPost')
 
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json({ type: 'application/json' }))
 app.use(bodyParser.raw());
+
+const newPostController = require('./controllers/newPost')
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/my_database', { useNewUrlParser: true })
@@ -35,7 +36,7 @@ const validateMiddleWare = (req, res, next) => {
     }
     next()
 }
-app.use('/posts/store',validateMiddleWare) 
+app.use('/posts/store', validateMiddleWare)
 
 //Tao server
 app.listen(4000, () => {
@@ -64,5 +65,25 @@ app.get('/post', (req, res) => {
 
 app.get('/posts/new',newPostController)
 
-app.post('/posts/store', validateMiddleWare)
+app.get('/post/:id', (req, res) => {
+    BlogPost.findById(req.params.id, function (error, detailPost) {
+        res.render('post', {
+            detailPost
+        })
+    })
+
+})
+
+app.post('/posts/store', function (req, res) {
+    let image = req.files.image;
+    image.mv(path.resolve(__dirname, 'public/upload', image.name), function (error) {
+        BlogPost.create({
+            ...req.body,
+            image: '/upload/' + image.name
+        }, function (err) {
+            res.redirect('/')
+        })
+    })
+
+})
 
