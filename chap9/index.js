@@ -31,13 +31,8 @@ const customMiddleWare = (req, res, next) => {
 }
 app.use(customMiddleWare)
 
-const validateMiddleWare = (req, res, next) => {
-    if (req.files == null || req.body.title == null || req.body.title == null) {
-        return res.redirect('/posts/new')
-    }
-    next()
-}
-app.use('/posts/store', validateMiddleWare)
+const validateMiddleware = require("./middleware/validationMiddleware");
+app.use('/posts/store', validateMiddleware)
 
 //Tao server
 app.listen(4000, () => {
