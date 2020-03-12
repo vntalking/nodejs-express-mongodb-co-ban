@@ -11,6 +11,9 @@ app.use(bodyParser.json({ type: 'application/json' }))
 app.use(bodyParser.raw());
 
 const newPostController = require('./controllers/newPost')
+const homeController = require('./controllers/home')
+const storePostController = require('./controllers/storePost')
+const getPostController = require('./controllers/getPost')
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/my_database', { useNewUrlParser: true })
@@ -44,36 +47,11 @@ app.listen(4000, () => {
 })
 
 
-app.get('/', (request, response) => {
-    BlogPost.find({}, function (error, posts) {
-        console.log(posts);
-        response.render('index', {
-            blogposts: posts
-        });
-    })
-})
+app.get('/', homeController)
 
 app.get('/posts/new',newPostController)
 
-app.get('/post/:id', (req, res) => {
-    BlogPost.findById(req.params.id, function (error, detailPost) {
-        res.render('post', {
-            detailPost
-        })
-    })
+app.get('/post/:id', getPostController)
 
-})
-
-app.post('/posts/store', function (req, res) {
-    let image = req.files.image;
-    image.mv(path.resolve(__dirname, 'public/upload', image.name), function (error) {
-        BlogPost.create({
-            ...req.body,
-            image: '/upload/' + image.name
-        }, function (err) {
-            res.redirect('/')
-        })
-    })
-
-})
+app.post('/posts/store', storePostController)
 
