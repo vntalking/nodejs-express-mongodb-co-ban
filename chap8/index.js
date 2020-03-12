@@ -65,5 +65,14 @@ app.get('/posts/new', (req, res) => {
     res.render('create')
 })
 
+app.get('/post/:id', (req, res) => {
+    BlogPost.findById(req.params.id, function(error, detailPost){
+        res.render('post', {
+            detailPost
+        })
+    })
+    
+})
+
 app.post('/posts/new', validateMiddleWare)
 
