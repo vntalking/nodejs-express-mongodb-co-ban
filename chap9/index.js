@@ -53,16 +53,6 @@ app.get('/', (request, response) => {
     })
 })
 
-app.get('/about', (req, res) => {
-    res.render('about');
-})
-app.get('/contact', (req, res) => {
-    res.render('contact');
-})
-app.get('/post', (req, res) => {
-    res.render('post')
-})
-
 app.get('/posts/new',newPostController)
 
 app.get('/post/:id', (req, res) => {
