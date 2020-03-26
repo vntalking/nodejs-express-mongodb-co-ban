@@ -16,6 +16,7 @@ const getPostController = require('./controllers/getPost')
 const newUserController = require('./controllers/newUser')
 const storeUserController = require('./controllers/storeUser')
 const loginController = require('./controllers/login')
+const loginUserController = require('./controllers/loginUser')
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/my_database', { useNewUrlParser: true })
@@ -56,3 +57,5 @@ app.get('/auth/register', newUserController)
 app.post('/users/register', storeUserController)
 
 app.get('/auth/login', loginController);
+
+app.post('/users/login',loginUserController)
