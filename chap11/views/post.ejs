@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('layouts/header'); -%>
+<body>
+  <%- include('layouts/navbar'); -%>
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('<%= detailPost.image %>')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1><%= detailPost.title %></h1>
+            <h2 class="subheading"><%= detailPost.body %></h2>
+            <span class="meta">Posted by
+              <a href="#"><%= detailPost.username %></a>
+              on <%= detailPost.datePosted.toDateString() %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <%= detailPost.body %>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <hr>
+  <%- include('layouts/footer'); -%>
+  <%- include('layouts/scripts'); -%>
+</body>
+
+</html>
