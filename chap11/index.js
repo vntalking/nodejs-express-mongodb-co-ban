@@ -2,7 +2,7 @@ const express = require('express')
 const app = new express()
 const ejs = require('ejs')
 app.set('view engine', 'ejs')
-
+const expressSession = require('express-session');
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -43,10 +43,14 @@ app.listen(4000, () => {
     console.log('OK. App listening on port 4000')
 })
 
+app.use(expressSession({
+    secret: 'keyboard cat'
+}))
+
 
 app.get('/', homeController)
 
-app.get('/posts/new',newPostController)
+app.get('/posts/new', newPostController)
 
 app.get('/post/:id', getPostController)
 
@@ -58,4 +62,4 @@ app.post('/users/register', storeUserController)
 
 app.get('/auth/login', loginController);
 
-app.post('/users/login',loginUserController)
+app.post('/users/login', loginUserController)
