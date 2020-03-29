@@ -48,6 +48,7 @@ app.use(expressSession({
 }))
 
 const authMiddleware = require('./middleware/authMiddleware')
+const redirectIfAuthenticatedMiddleware = require('./middleware/redirectIfAuthenticatedMiddleware')
 
 app.get('/', homeController)
 
@@ -57,10 +58,10 @@ app.get('/post/:id', getPostController)
 
 app.post('/posts/store', authMiddleware, storePostController)
 
-app.get('/auth/register', newUserController)
+app.get('/auth/register', redirectIfAuthenticatedMiddleware, newUserController)
 
-app.post('/users/register', storeUserController)
+app.post('/users/register', redirectIfAuthenticatedMiddleware, storeUserController)
 
-app.get('/auth/login', loginController);
+app.get('/auth/login', redirectIfAuthenticatedMiddleware, loginController);
 
-app.post('/users/login', loginUserController)
+app.post('/users/login', redirectIfAuthenticatedMiddleware, loginUserController)
