@@ -24,7 +24,11 @@ mongoose.connect('mongodb://localhost/my_database', { useNewUrlParser: true })
 const fileUpload = require('express-fileupload')
 app.use(fileUpload())
 
-
+global.loggedIn = null;
+app.use("*", (req, res, next) => {
+    loggedIn = req.session.userId;
+    next()
+});
 
 //Đăng ký thư mục public.....
 app.use(express.static('public'))
