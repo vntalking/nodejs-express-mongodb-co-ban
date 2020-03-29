@@ -55,7 +55,7 @@ app.get('/posts/new', authMiddleware, newPostController)
 
 app.get('/post/:id', getPostController)
 
-app.post('/posts/store', storePostController)
+app.post('/posts/store', authMiddleware, storePostController)
 
 app.get('/auth/register', newUserController)
 
