@@ -47,10 +47,11 @@ app.use(expressSession({
     secret: 'keyboard cat'
 }))
 
+const authMiddleware = require('./middleware/authMiddleware')
 
 app.get('/', homeController)
 
-app.get('/posts/new', newPostController)
+app.get('/posts/new', authMiddleware, newPostController)
 
 app.get('/post/:id', getPostController)
 
