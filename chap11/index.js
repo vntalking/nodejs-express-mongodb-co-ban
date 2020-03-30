@@ -17,6 +17,7 @@ const newUserController = require('./controllers/newUser')
 const storeUserController = require('./controllers/storeUser')
 const loginController = require('./controllers/login')
 const loginUserController = require('./controllers/loginUser')
+const logoutController = require('./controllers/logout')
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/my_database', { useNewUrlParser: true })
@@ -71,3 +72,5 @@ app.post('/users/register', redirectIfAuthenticatedMiddleware, storeUserControll
 app.get('/auth/login', redirectIfAuthenticatedMiddleware, loginController);
 
 app.post('/users/login', redirectIfAuthenticatedMiddleware, loginUserController)
+
+app.get('/auth/logout', logoutController)
