@@ -1,6 +1,6 @@
 # Ebook: Lập trình Node.js thật đơn giản<br/>
 ### Hướng dẫn tự xây dựng ứng dụng từ A - Z
-![enter image description here](https://i.ibb.co/10NSpdD/L-p-tr-nh-Node-js-Th-t-n-gi-n-599.png)
+![enter image description here](https://i.ibb.co/QrchKf4/lap-Trinh-Node-3-DCover.png)
 
 Dự án sách được thực hiện bởi [VNTALKING.COM](https://vntalking.com)<br/>
 
