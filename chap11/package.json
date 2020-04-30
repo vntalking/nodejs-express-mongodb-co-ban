@@ -37,7 +37,7 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.1.6",
     "express-session": "^1.17.0",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "mongoose": "^5.9.4"
   },
   "devDependencies": {
