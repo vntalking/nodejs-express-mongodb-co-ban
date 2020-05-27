@@ -63,7 +63,7 @@ app.post('/posts/new', (req, res) => {
     let image = req.files.image;
     image.mv(path.resolve(__dirname, 'public/img', image.name), function (err) {
         // model creates a new doc with browser data
-        BlogPost.create({body:req.body,image: '/upload/' + image.name}, (error, blogpost) => {
+        BlogPost.create({ ...req.body,image: '/upload/' + image.name}, (error, blogpost) => {
             res.redirect('/')
         })
     })
